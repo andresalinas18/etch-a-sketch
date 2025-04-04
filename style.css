@@ -1,0 +1,26 @@
+#grid-container {
+    height: 960px;
+    width: 960px;
+    display: flex;
+    flex-direction: column; 
+    border: 1px solid black;
+    overflow: hidden;  
+}
+
+
+.row{
+    height: 960px;
+    display: flex;
+    border: 1px solid black;
+    box-sizing: border-box;
+    flex: 1; 
+}
+
+
+.column {
+    flex: 1;
+    aspect-ratio: 1 / 1;  
+    border: 1px solid black;
+    background-color: bisque;
+}
+
