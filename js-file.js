@@ -2,12 +2,16 @@ const gridContainer = document.getElementById("grid-container"); //get the eleme
 
 // create the function to create the grid.
 function createGrid(size){
+    mode = "green"
     gridContainer.innerHTML = "";
-    size = 16;
+    const gridHeight = gridContainer.getBoundingClientRect().height;
+    const rowHeight = gridHeight / size;
+
 
     for( let i = 0; i < size; i++){
         const rowDiv = document.createElement("div");
         rowDiv.classList.add("row");         
+        rowDiv.style.height = `${rowHeight}px`;
         gridContainer.appendChild(rowDiv);
         
         for( let j = 0; j < size; j++){
@@ -22,11 +26,37 @@ function createGrid(size){
    
 }
 
+mode = "green";
+
+const newMode = document.getElementById("rainbow");
+newMode.addEventListener("click", function (){
+    
+    createGrid(currentSize);
+    mode = "rainbow";
+    
+
+});
+
+
+
 gridContainer.addEventListener("mouseover", (event) => {
     if (event.target.classList.contains("column")) {
-        event.target.style.backgroundColor = "red"; 
+        
+        if (mode === "rainbow") {
+            event.target.style.backgroundColor = `rgb(${random()}, ${random()}, ${random()})`;
+        } else {
+            event.target.style.backgroundColor = mode;
+        }
+        event.target.style.opacity = "1";
     }
+    
 });
+
+function random() {
+    return Math.floor(Math.random() * 256);
+  }
+  
+  const rainbowColor = `rgb(${random()}, ${random()}, ${random()})`;
 
 
 const resizeButton = document.getElementById("resize-button"); // get the element div by Id resize-button
@@ -41,6 +71,18 @@ resizeButton.addEventListener("click", function() {
         return;
     }
 
-    createGrid(size);
+    currentSize = size;
+    createGrid(currentSize);
     
+});
+
+let currentSize = 16;
+createGrid(16);
+const resetButton = document.getElementById("reset");
+
+resetButton.addEventListener("click", () => {
+    createGrid(currentSize);
+    mode = "green";
+
+
 });
