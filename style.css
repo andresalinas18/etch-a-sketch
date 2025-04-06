@@ -1,6 +1,6 @@
 #grid-container {
-    height: 960px;
-    width: 960px;
+    height: 900px;
+    width: 900px;
     display: flex;
     flex-direction: column; 
     border: 1px solid black;
@@ -9,7 +9,7 @@
 
 
 .row{
-    height: 960px;
+    
     display: flex;
     border: 1px solid black;
     box-sizing: border-box;
@@ -22,5 +22,10 @@
     aspect-ratio: 1 / 1;  
     border: 1px solid black;
     background-color: bisque;
+    transition: background-color 0.3s ease;
+   
 }
 
+button{
+    margin-bottom: 20px;
+}
